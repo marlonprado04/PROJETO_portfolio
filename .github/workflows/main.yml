@@ -11,9 +11,19 @@ jobs:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
+      - name: 🔍 Debug secrets
+        run: |
+          echo "ftp_host: ${{ secrets.ftp_host }}"
+          echo "ftp_user: ${{ secrets.ftp_user }}"
+
+      - name: 🔗 Test connection
+        run: |
+          ping -c 4 ${{ secrets.ftp_host }}
+
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.ftp_host }}
           username: ${{ secrets.ftp_user }}
           password: ${{ secrets.ftp_password }}
+          server-dir: /domains/marlonprado.com.br/public_html/
