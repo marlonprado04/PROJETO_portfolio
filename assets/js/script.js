@@ -71,7 +71,7 @@ function createFooter() {
 
   // Cria o parágrafo dentro do footer
   let paragraph = document.createElement("p");
-  paragraph.textContent = "Site desenvolvido por Marlon Prado";
+  paragraph.textContent = "Desenvolvido por Marlon Prado. Todos direitos reservados. 2024 ©";
 
   // Adiciona o parágrafo ao footer
   footer.appendChild(paragraph);
