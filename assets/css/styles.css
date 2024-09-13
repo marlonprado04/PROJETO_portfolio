@@ -10960,3 +10960,40 @@ section.resume-section .resume-section-content {
     padding-bottom: 5rem;
   }
 }
+
+/* Define behavior for the section on hover */
+.sec-hover{
+  transition: all 0.6s;
+  padding: 2vh;
+  border-radius: 1vh;
+}
+
+.sec-hover:hover{
+  -webkit-box-shadow: 10px 10px 8px 0px rgba(0,0,0,0.15);
+  -moz-box-shadow: 10px 10px 8px 0px rgba(0,0,0,0.15);
+  box-shadow: 10px 10px 8px 0px rgba(0,0,0,0.15);	
+}
+
+.mb-0{
+  transition: all 0.5s;
+} 
+
+.sec-hover:hover >  .flex-grow-1 > .mb-0 {
+  color: #460D88;
+} 
+
+.subheading{
+  transition: all 0.5s;
+} 
+
+.sec-hover:hover >  .flex-grow-1 > .subheading{
+  color: #CB6D00;
+} 
+
+.p{
+  transition: all 0.5s;
+} 
+
+.sec-hover:hover >  .flex-grow-1 > p{
+  color: black;
+}
