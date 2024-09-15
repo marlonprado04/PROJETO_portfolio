@@ -1,23 +1,21 @@
 on:
   push:
     branches:
-      - main
-name: 🚀 Deploy website (Main)
+      - testes
+name: 🚀 Deploy subdomain (Testes)
 jobs:
   web-deploy:
-    name: 🎉 Deploy Main
+    name: 🎉 Deploy Testes
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: 📂 Sync files to public_html
+      - name: 📂 Sync files to subdomain
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.ftp_host }}
           username: ${{ secrets.ftp_user }}
           password: ${{ secrets.ftp_password }}
           local-dir: ./
-          server-dir: /public_html/
-          exclude: |
-            /testes/**
+          server-dir: /public_html/testes/
