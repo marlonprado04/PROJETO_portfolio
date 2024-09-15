@@ -2,18 +2,22 @@ on:
   push:
     branches:
       - main
-name: 🚀 Deploy website 
+name: 🚀 Deploy website (Main)
 jobs:
   web-deploy:
-    name: 🎉 Deploy
+    name: 🎉 Deploy Main
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: 📂 Sync files
+      - name: 📂 Sync files to public_html
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.ftp_host}}
+          server: ${{ secrets.ftp_host }}
           username: ${{ secrets.ftp_user }}
           password: ${{ secrets.ftp_password }}
+          local-dir: ./
+          server-dir: /public_html/
+          exclude: |
+            /testes/**
