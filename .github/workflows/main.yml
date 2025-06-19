@@ -1,23 +1,22 @@
+name: 🚀 Deploy do main
 on:
   push:
     branches:
       - main
-name: 🚀 Deploy website (Main)
 jobs:
   web-deploy:
-    name: 🎉 Deploy Main
-    runs-on: ubuntu-latest
+    name: 🎉 Deploy de main
+    runs-on: ubuntu-24.04
     steps:
-      - name: 🚚 Get latest code
+      - name: 🚚 Baixando o código
         uses: actions/checkout@v4
 
-      - name: 📂 Sync files to public_html
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Copiando arquivos para o servidor
+        uses: appleboy/scp-action@v1
         with:
-          server: ${{ secrets.ftp_host }}
-          username: ${{ secrets.ftp_user }}
-          password: ${{ secrets.ftp_password }}
-          local-dir: ./
-          server-dir: ./
-          exclude: |
-            /testes/**
+          host: ${{ secrets.VPS_HOST }} 
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "."
+          target: /var/www/html/portfolio
+

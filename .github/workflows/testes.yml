@@ -1,21 +1,22 @@
+name: 🚀 Deploy do subdomínio testes
 on:
   push:
     branches:
       - testes
-name: 🚀 Deploy subdomain (Testes)
 jobs:
   web-deploy:
-    name: 🎉 Deploy Testes
-    runs-on: ubuntu-latest
+    name: 🎉 Deploy de testes
+    runs-on: ubuntu-24.04
     steps:
-      - name: 🚚 Get latest code
+      - name: 🚚 Baixando o código
         uses: actions/checkout@v4
 
-      - name: 📂 Sync files to subdomain
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Copiando arquivos para o servidor
+        uses: appleboy/scp-action@v1
         with:
-          server: ${{ secrets.ftp_host }}
-          username: ${{ secrets.ftp_user }}
-          password: ${{ secrets.ftp_password }}
-          local-dir: ./
-          server-dir: ./testes/
+          host: ${{ secrets.VPS_HOST }} 
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "."
+          target: /var/www/html/portfolio
+
